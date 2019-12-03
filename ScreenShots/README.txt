@@ -1,1 +1,1 @@
-This folder contains all the screenshots and html reports
+This folder contains screenshots and html reports
