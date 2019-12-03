@@ -36,7 +36,7 @@ public class GenerateTestScript extends BaseClass {
 			executionStartTime=getCurrentTime();
 			
 			for (List<String> list : excelData) {
-				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver.exe");
 				ChromeOptions opt = new ChromeOptions();
 				opt.addArguments("disable-infobars");
 				opt.addArguments("--start-maximized");
