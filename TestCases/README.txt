@@ -1,0 +1,1 @@
+This folder contains generated manual test cases
