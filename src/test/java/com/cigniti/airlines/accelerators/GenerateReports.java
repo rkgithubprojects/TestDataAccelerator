@@ -96,7 +96,7 @@ public class GenerateReports extends BaseClass{
 				{
 					writer.write("<br><table width='90%' border='1'>");
 					writer.write("<tr bgcolor='#00FFFF' height='30'>");
-					String tcName=currentSheetName.toUpperCase()+"_"+count++;
+					String tcName=currentSheetName.toUpperCase();
 					writer.write("<th>  <font size='4' >" + tcName + "</font></th>");
 					writer.write("</tr></table><br>");
 				}
@@ -108,7 +108,7 @@ public class GenerateReports extends BaseClass{
 				writer.write("<th width='45%'><font size='3' align='left'>" + result.getStepDescription() + "</font></th>");
 				if (result.getStatus())
 				{
-					writer.write("<th width='25%'><font size='4' color='0000ff' align='center'>"+ "PASSED"+ "</font></th>");
+					writer.write("<th width='25%'><font size='4' color='0000ff' align='center'>"+ "PASS"+ "</font></th>");
 					//writer.write("<th width='25%'><font size='4' color='0000ff'><img src='http://img.teapic.com/thumbs/201207/27/110424tgsuxofpjdlbormt.jpg.middle.jpg' alt='PASSED' style='width:20px;height:20px;'/></font></th>");
 				}
 				else 

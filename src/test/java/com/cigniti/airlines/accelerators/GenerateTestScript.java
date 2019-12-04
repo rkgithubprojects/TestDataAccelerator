@@ -36,13 +36,12 @@ public class GenerateTestScript extends BaseClass {
 			executionStartTime=getCurrentTime();
 			
 			for (List<String> list : excelData) {
-				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
 				ChromeOptions opt = new ChromeOptions();
 				opt.addArguments("disable-infobars");
 				opt.addArguments("--start-maximized");
 				opt.addArguments("--disable-extensions");
 				driver = new ChromeDriver(opt);
-				driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 				driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 				initialize(staticData);
 
