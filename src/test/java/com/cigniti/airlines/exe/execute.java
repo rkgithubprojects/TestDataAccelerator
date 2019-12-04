@@ -35,6 +35,8 @@ public class execute {
 			GenerateTestScript generateScript=new GenerateTestScript();
 			generateScript.runTestScript(excelData, storeData,staticData,sheetNames[0]);
 			
+			tc.writePNRInformationToExcel();
+			
 		}
 		catch(Exception e)
 		{

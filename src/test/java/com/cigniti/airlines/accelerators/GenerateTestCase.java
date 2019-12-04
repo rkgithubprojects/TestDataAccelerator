@@ -1,7 +1,9 @@
 package com.cigniti.airlines.accelerators;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -227,5 +229,46 @@ public class GenerateTestCase extends BaseClass{
 			e.printStackTrace();
 		}
 		return status;
+	}
+	
+	public void writePNRInformationToExcel() {
+		System.out.println(pnrNumber);
+		boolean status=false;
+		InputStream inputStream = null;
+		XSSFWorkbook tcWorkbook=null;
+		FileOutputStream tcOutputStream=null;
+		try
+		{
+			String sheetName="GeneratedTestCases";
+			File testCaseFile = new File(System.getProperty("user.dir") + "/TestCases.xlsx");
+			inputStream = new FileInputStream(testCaseFile);
+			tcWorkbook = new XSSFWorkbook(inputStream);
+			Sheet tcOutsheet = tcWorkbook.getSheet(sheetName);
+			int rowsCount = tcOutsheet.getLastRowNum() - tcOutsheet.getFirstRowNum();
+			for (int i = 0; i < rowsCount + 1; i++) {
+				Cell cell = null;
+				if(i == 0) {
+					cell = tcOutsheet.getRow(i).createCell(3);
+					cell.setCellValue("PNR Information");	
+				}else {
+				cell = tcOutsheet.getRow(i).createCell(3);
+				System.out.println(pnrNumber);
+				cell.setCellValue(pnrNumber);
+				}
+			}
+			inputStream.close();
+			tcOutputStream = new FileOutputStream(testCaseFile);
+			tcWorkbook.write(tcOutputStream);
+			tcOutputStream.close();
+			status=true;
+		}
+		catch(Exception e)
+		{
+			if(!status)
+			{
+				System.out.println("Error in writing PNR Information to excel");
+			}
+		e.printStackTrace();
+	}
 	}
 }

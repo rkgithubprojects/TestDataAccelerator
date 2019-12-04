@@ -41,6 +41,7 @@ public class UtilitiesClass {
 	public static String executionStartTime="";
 	public static String executionEndTime="";
 	public static String currentSheetName="";
+	public static String pnrNumber="";
 	
 	public void highlightElement(By locator) {
 		try {

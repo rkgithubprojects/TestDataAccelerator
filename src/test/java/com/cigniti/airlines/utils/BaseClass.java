@@ -320,6 +320,7 @@ public class BaseClass extends UtilitiesClass {
 		{
 			highlightElement(locator);
 			text=driver.findElement(locator).getText();
+			pnrNumber = text;
 		}
 		catch(Exception e)
 		{
