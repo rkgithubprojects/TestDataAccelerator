@@ -71,17 +71,21 @@ public class UtilitiesClass {
 	/*
 	 * Method to take screen shot of current opened page
 	 */
-	public static void takeScreenShot() throws Exception
+	public static String takeScreenShot() throws Exception
 	{
 		try {
 			DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 			Date date = new Date();
 			TakesScreenshot scr=(TakesScreenshot)driver;
 			File srcFile=scr.getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(srcFile, new File(System.getProperty("user.dir") + "/ScreenShots/SCR_"+dateFormat.format(date)+".png"));			
+			String fileName = "SCR_"+dateFormat.format(date)+".png";
+			String filePath = System.getProperty("user.dir") + "/ScreenShots/"+fileName;
+			FileUtils.copyFile(srcFile, new File(filePath));
+			return fileName;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "";
 	}
 	
 	public static By getLocator(String locatorType, String locatorValue) throws Exception {

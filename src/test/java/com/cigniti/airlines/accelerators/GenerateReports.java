@@ -18,8 +18,8 @@ public class GenerateReports extends BaseClass{
 			Writer writer = null;
 			totalPax=adultsCount+seniorsCount;
 			int count=0;
-
-			File file = new File(System.getProperty("user.dir") + "/ScreenShots/SummaryReports.html");
+			String screenshotsPath = System.getProperty("user.dir") + "/ScreenShots";
+			File file = new File(screenshotsPath+ "/SummaryReports.html");
 
 			writer = new FileWriter(file, false);
 			writer.write("<html><body bgcolor='#000000'>");
@@ -108,12 +108,12 @@ public class GenerateReports extends BaseClass{
 				writer.write("<th width='45%'><font size='3' align='left'>" + result.getStepDescription() + "</font></th>");
 				if (result.getStatus())
 				{
-					writer.write("<th width='25%'><font size='4' color='0000ff' align='center'>"+ "PASS"+ "</font></th>");
-					//writer.write("<th width='25%'><font size='4' color='0000ff'><img src='http://img.teapic.com/thumbs/201207/27/110424tgsuxofpjdlbormt.jpg.middle.jpg' alt='PASSED' style='width:20px;height:20px;'/></font></th>");
+					//writer.write("<th width='25%'><font size='4' color='0000ff' align='center'>"+ "PASS"+ "</font></th>");
+					writer.write("<th width='25%'><font size='4' color='0000ff'><img src='"+ screenshotsPath +"/passed.png"+"' alt='PASSED' style='width:20px;height:20px;'/></font></th>");
 				}
 				else 
 				{
-					writer.write("<th width='20%'><font size='4' color='0000ff'><img src='http://previews.123rf.com/images/cobalt/cobalt1304/cobalt130400022/19104926-Negate-wrong-icon-red-button--Stock-Vector-delete.jpg' alt='FAILED' style='width:20px;height:20px;'/></font></th>");
+					writer.write("<th width='20%'><a href='"+result.getScreenShotPath()+"' target='_blanks' /><font size='4' color='0000ff'><img src='http://previews.123rf.com/images/cobalt/cobalt1304/cobalt130400022/19104926-Negate-wrong-icon-red-button--Stock-Vector-delete.jpg' alt='FAILED' style='width:20px;height:20px;'/></font></th>");
 				}
 				writer.write("</tr>");
 				writer.write("</table>");

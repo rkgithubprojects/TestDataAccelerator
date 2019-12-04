@@ -301,11 +301,12 @@ public class BaseClass extends UtilitiesClass {
 			Result result = null;
 			if (status) {
 				System.out.println(statement.replace("$", category) + " --  Passed");
-				result = new Result(operation, stepCount++, statement.replace("$", category), true);
+				result = new Result(operation, stepCount++, statement.replace("$", category), true, "");
 			} else {
 				System.out.println(statement.replace("$", category) + " --  Failed");
-				result = new Result(operation, stepCount++, statement.replace("$", category), false);
-				takeScreenShot();
+				String screenshotpath = takeScreenShot();
+				result = new Result(operation, stepCount++, statement.replace("$", category), false, screenshotpath);
+				
 				
 			}
 			
