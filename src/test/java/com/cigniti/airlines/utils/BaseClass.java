@@ -113,6 +113,27 @@ public class BaseClass extends UtilitiesClass {
 		return flag;
 	}
 	
+	private boolean selectFlight(By locator){
+		boolean flag=false;
+		List<WebElement> flightList=null;
+		try
+		{
+			flightList = driver.findElements(locator);
+			WebElement flight = flightList.get(getRandomInt(0,flightList.size() - 1));
+			flightNumber = flight.getAttribute("data-ref");
+			System.out.println("flightNumber>>>> " + flightNumber);
+			flight.click();
+			flag=true;
+			
+		}
+		catch(Exception e)
+		{
+			flag=false;
+			throw e;
+		}
+		return flag;
+	}
+	
 	public boolean clickOnElementByUsingJSE(By locator) throws Exception {
 		boolean flag=false;
 		try {
@@ -276,6 +297,31 @@ public class BaseClass extends UtilitiesClass {
 				status= fillData("PAYMENTINFORMATION");
 			break;
 			
+			case "GETPNR":
+				pnrNumber=getText(getLocator(locatorType, locatorValue));
+				status=(pnrNumber!="")&&(pnrNumber!=null);
+				break;
+				
+			case "GETJOURNEYDATE":
+				journeyDate=getText(getLocator(locatorType, locatorValue));
+				status=(journeyDate!="")&&(journeyDate!=null);
+				break;
+				
+			case "GETORIGIN":
+				origin=getText(getLocator(locatorType, locatorValue));
+				status=(origin!="")&&(origin!=null);
+				break;
+				
+			case "GETDESTINATION":
+				destination=getText(getLocator(locatorType, locatorValue));
+				status=(destination!="")&&(destination!=null);
+				break;
+				
+			case "SELECTFLIGHT":
+				status=selectFlight(getLocator(locatorType, locatorValue));
+				break;
+				
+				
 			default:
 				System.out.println("The operation Type [ " + operation + " ] is not defined");
 			break;
@@ -321,7 +367,6 @@ public class BaseClass extends UtilitiesClass {
 		{
 			highlightElement(locator);
 			text=driver.findElement(locator).getText();
-			pnrNumber = text;
 		}
 		catch(Exception e)
 		{

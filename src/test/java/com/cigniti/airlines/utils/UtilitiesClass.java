@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -41,7 +42,12 @@ public class UtilitiesClass {
 	public static String executionStartTime="";
 	public static String executionEndTime="";
 	public static String currentSheetName="";
-	public static String pnrNumber="Booking Failed";
+	public String pnrNumber="Booking Failed";
+	public String journeyDate="";
+	public String flightNumber = "";
+	private static Random rand = new Random();
+	public String origin = "";
+	public String destination = "";
 	
 	public void highlightElement(By locator) {
 		try {
@@ -51,6 +57,11 @@ public class UtilitiesClass {
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+	
+	public static int getRandomInt(int min, int max) {
+		int randomNum = rand.nextInt(max - min + 1) + min;
+		return randomNum;
 	}
 	
 	public String getCurrentTime()

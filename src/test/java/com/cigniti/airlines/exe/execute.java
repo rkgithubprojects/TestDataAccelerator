@@ -28,14 +28,12 @@ public class execute {
 			
 			ReadStaticSteps rd=new ReadStaticSteps();
 			Map<String, List<TestData>> staticData=rd.readStaticData();
-			
 			GenerateTestCase tc=new GenerateTestCase();
 			tc.generateTestCase(excelData, storeData, staticData, sheetNames[0]);
 			
 			GenerateTestScript generateScript=new GenerateTestScript();
 			generateScript.runTestScript(excelData, storeData,staticData,sheetNames[0]);
 			
-			tc.writePNRInformationToExcel();
 			
 		}
 		catch(Exception e)

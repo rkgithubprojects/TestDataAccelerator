@@ -1,6 +1,10 @@
 package com.cigniti.airlines.accelerators;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -8,6 +12,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -78,7 +85,7 @@ public class GenerateTestScript extends BaseClass {
 				}
 				stepCount=1;
 				tcCount++;
-			
+				writePNRInformationToExcel(tcCount);
 				//break;
 				if(tcCount==3)
 					{break;}
@@ -93,6 +100,84 @@ public class GenerateTestScript extends BaseClass {
 		}
 	}
 
+	
+	public void writePNRInformationToExcel(int rowindex) {
+		boolean status=false;
+		InputStream inputStream = null;
+		XSSFWorkbook tcWorkbook=null;
+		FileOutputStream tcOutputStream=null;
+		try
+		{
+			String sheetName="GeneratedTestCases";
+			File testCaseFile = new File(System.getProperty("user.dir") + "/TestCases.xlsx");
+			inputStream = new FileInputStream(testCaseFile);
+			tcWorkbook = new XSSFWorkbook(inputStream);
+			Sheet tcOutsheet = tcWorkbook.getSheet(sheetName);
+			int rowsCount = tcOutsheet.getLastRowNum() - tcOutsheet.getFirstRowNum();
+			while (rowindex < rowsCount + 1) {
+				Cell cell = null;
+				if(rowindex == 1) {
+					cell = tcOutsheet.getRow(0).createCell(3);
+					cell.setCellValue("Flight Number");
+					cell = tcOutsheet.getRow(0).createCell(4);
+					cell.setCellValue("PNR Number");
+					cell = tcOutsheet.getRow(0).createCell(5);
+					cell.setCellValue("PNR Validity");
+					cell = tcOutsheet.getRow(0).createCell(6);
+					cell.setCellValue("Origin");
+					cell = tcOutsheet.getRow(0).createCell(7);
+					cell.setCellValue("Destination");
+					cell = tcOutsheet.getRow(rowindex).createCell(3);
+					cell.setCellValue(flightNumber);
+					flightNumber = "";
+					cell = tcOutsheet.getRow(rowindex).createCell(4);
+					cell.setCellValue(pnrNumber);
+					pnrNumber = "Booking Failed";
+					cell = tcOutsheet.getRow(rowindex).createCell(5);
+					cell.setCellValue(journeyDate);
+					journeyDate = "";
+					cell = tcOutsheet.getRow(rowindex).createCell(6);
+					cell.setCellValue(origin);
+					origin = "";
+					cell = tcOutsheet.getRow(rowindex).createCell(7);
+					cell.setCellValue(destination);
+					destination = "";
+					break;
+					
+				}else {
+				cell = tcOutsheet.getRow(rowindex).createCell(3);
+				cell.setCellValue(flightNumber);
+				flightNumber = "";
+				cell = tcOutsheet.getRow(rowindex).createCell(4);
+				cell.setCellValue(pnrNumber);
+				pnrNumber = "Booking Failed";
+				cell = tcOutsheet.getRow(rowindex).createCell(5);
+				cell.setCellValue(journeyDate);
+				journeyDate = "";
+				cell = tcOutsheet.getRow(rowindex).createCell(6);
+				cell.setCellValue(origin);
+				origin = "";
+				cell = tcOutsheet.getRow(rowindex).createCell(7);
+				cell.setCellValue(destination);
+				destination = "";
+				break;
+				}
+			}
+			inputStream.close();
+			tcOutputStream = new FileOutputStream(testCaseFile);
+			tcWorkbook.write(tcOutputStream);
+			tcOutputStream.close();
+			status=true;
+		}
+		catch(Exception e)
+		{
+			if(!status)
+			{
+				System.out.println("Error in writing PNR Information to excel");
+			}
+		e.printStackTrace();
+	}
+	}
 	
 	/*
 	 * Method to execute verification/static steps

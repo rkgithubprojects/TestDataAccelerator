@@ -5,7 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +56,7 @@ public class GenerateTestCase extends BaseClass{
 					if (category.equalsIgnoreCase("ONEWAY")) {
 						isOneWay = true;
 					}
+					//temp = temp.concat(category+"@");
 					temp = temp.concat(category+"@");
                     tcSteps.add(statement.replace("$", category));
 					/*tcSteps.addAll(getTestCaseSteps(data));*/
@@ -232,7 +236,6 @@ public class GenerateTestCase extends BaseClass{
 	}
 	
 	public void writePNRInformationToExcel() {
-		System.out.println(pnrNumber);
 		boolean status=false;
 		InputStream inputStream = null;
 		XSSFWorkbook tcWorkbook=null;
@@ -249,11 +252,31 @@ public class GenerateTestCase extends BaseClass{
 				Cell cell = null;
 				if(i == 0) {
 					cell = tcOutsheet.getRow(i).createCell(3);
-					cell.setCellValue("PNR Information");	
+					cell.setCellValue("Flight Number");
+					cell = tcOutsheet.getRow(i).createCell(4);
+					cell.setCellValue("PNR Number");
+					cell = tcOutsheet.getRow(i).createCell(5);
+					cell.setCellValue("PNR Validity");
+					cell = tcOutsheet.getRow(i).createCell(6);
+					cell.setCellValue("Origin");
+					cell = tcOutsheet.getRow(i).createCell(7);
+					cell.setCellValue("Destination");
 				}else {
 				cell = tcOutsheet.getRow(i).createCell(3);
-				System.out.println(pnrNumber);
+				cell.setCellValue(flightNumber);
+				flightNumber = "";
+				cell = tcOutsheet.getRow(i).createCell(4);
 				cell.setCellValue(pnrNumber);
+				pnrNumber = "Booking Failed";
+				cell = tcOutsheet.getRow(i).createCell(5);
+				cell.setCellValue(journeyDate);
+				journeyDate = "";
+				cell = tcOutsheet.getRow(i).createCell(6);
+				cell.setCellValue(origin);
+				origin = "";
+				cell = tcOutsheet.getRow(i).createCell(7);
+				cell.setCellValue(destination);
+				destination = "";
 				}
 			}
 			inputStream.close();

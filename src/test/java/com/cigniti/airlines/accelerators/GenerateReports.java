@@ -96,7 +96,7 @@ public class GenerateReports extends BaseClass{
 				{
 					writer.write("<br><table width='90%' border='1'>");
 					writer.write("<tr bgcolor='#00FFFF' height='30'>");
-					String tcName=currentSheetName.toUpperCase();
+					String tcName=currentSheetName.toUpperCase()+count++;
 					writer.write("<th>  <font size='4' >" + tcName + "</font></th>");
 					writer.write("</tr></table><br>");
 				}
@@ -109,11 +109,11 @@ public class GenerateReports extends BaseClass{
 				if (result.getStatus())
 				{
 					//writer.write("<th width='25%'><font size='4' color='0000ff' align='center'>"+ "PASS"+ "</font></th>");
-					writer.write("<th width='25%'><font size='4' color='0000ff'><img src='"+ screenshotsPath +"/passed.png"+"' alt='PASSED' style='width:20px;height:20px;'/></font></th>");
+					writer.write("<th width='25%'><img src='"+ screenshotsPath +"/passed.png"+"' style='width:20px;height:20px;'/></th>");
 				}
 				else 
 				{
-					writer.write("<th width='20%'><a href='"+result.getScreenShotPath()+"' target='_blanks' /><font size='4' color='0000ff'><img src='http://previews.123rf.com/images/cobalt/cobalt1304/cobalt130400022/19104926-Negate-wrong-icon-red-button--Stock-Vector-delete.jpg' alt='FAILED' style='width:20px;height:20px;'/></font></th>");
+					writer.write("<th width='20%'><a href='"+result.getScreenShotPath()+"' target='_blanks' /><img src='http://previews.123rf.com/images/cobalt/cobalt1304/cobalt130400022/19104926-Negate-wrong-icon-red-button--Stock-Vector-delete.jpg' style='width:20px;height:20px;'/></th>");
 				}
 				writer.write("</tr>");
 				writer.write("</table>");
