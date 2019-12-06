@@ -109,7 +109,7 @@ public class GenerateReports extends BaseClass{
 				if (result.getStatus())
 				{
 					//writer.write("<th width='25%'><font size='4' color='0000ff' align='center'>"+ "PASS"+ "</font></th>");
-					writer.write("<th width='25%'><img src='"+ screenshotsPath +"/passed.png"+"' style='width:20px;height:20px;'/></th>");
+					writer.write("<th width='25%'><img src='https://png.pngtree.com/png-clipart/20190921/original/pngtree-true-and-false-symbols-accept-rejected-for-evaluation-vector-simple-png-image_4723245.jpg' style='width:20px;height:20px;'/></th>");
 				}
 				else 
 				{
